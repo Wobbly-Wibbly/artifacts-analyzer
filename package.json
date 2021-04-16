@@ -1,6 +1,6 @@
 {
   "name": "artifacts-analyzer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Helps to analyze build optimizations, by comparing 2 build results",
   "engines": {
     "node": ">=12.0.0"
@@ -10,7 +10,7 @@
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./dist && tsc",
     "start": "tsc -w"
   },
   "author": "simon.radionov@gmail.com",
