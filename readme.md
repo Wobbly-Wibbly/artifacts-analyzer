@@ -10,4 +10,4 @@ This utillity cli library helps in comparing 2 build folders.
 4. run `npx artifacts-analyzer compare build`. An HTML report should be generated now, you can find it in your project root at `./buildSizeReport.html`
 
 You will see something like this
-![report.html](/readme/0416_225905.png 'Report')
+![report.html](/media/0416_225905.png 'Report')
