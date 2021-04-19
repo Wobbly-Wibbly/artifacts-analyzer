@@ -1,6 +1,6 @@
 {
   "name": "artifacts-analyzer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Helps to analyze build optimizations, by comparing 2 build results",
   "engines": {
     "node": ">=12.0.0"
