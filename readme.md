@@ -11,3 +11,8 @@ This utillity cli library helps in comparing 2 build folders.
 
 You will see something like this
 ![report.html](/media/0416_225905.png 'Report')
+
+
+
+## Other helpfull tools
+[Source map explorer](https://github.com/danvk/source-map-explorer)

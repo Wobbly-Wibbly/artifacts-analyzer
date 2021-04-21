@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { SimpleFileStats } from './types';
 
-function getFilesSafeAndSorted(dirPath: string) {
+export function generateSimpleFileStats(dirPath: string) {
   return getFilesSafe(dirPath).sort((l, r) => r.size - l.size);
 }
 
@@ -33,9 +33,4 @@ function getFiles(dirPath: string, relativePath = '.'): SimpleFileStats[] {
     }
     return [];
   });
-}
-
-export function generateSimpleFileStats(path: string) {
-  const x = getFilesSafeAndSorted(path);
-  return x;
 }

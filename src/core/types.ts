@@ -15,6 +15,7 @@ export interface CompareFilesStats {
   sizeNew: number;
   file: string;
   folderName: string;
+  fileType: string;
   sizeReadable: string;
   newSizeReadable: string;
   diffSize: number;
@@ -26,6 +27,7 @@ export interface CompareFilesStats {
 
 export interface SimpleCompareFoldersStats {
   folderName: string;
+  fileType: string;
   diffSize: number;
   sizeWas: number;
   sizeNew: number;
@@ -42,8 +44,13 @@ export interface CompareFolderStats extends SimpleCompareFoldersStats {
   isSizeDecreased: boolean;
 }
 
+export interface CompareFileTypeStats extends CompareFolderStats {
+  fileType: string;
+}
+
 export interface CompareReport {
   fileStats: CompareFilesStats[];
   folderStats: CompareFolderStats[];
+  fileTypeStats: CompareFileTypeStats[];
   leftReportTimestamp: number;
 }

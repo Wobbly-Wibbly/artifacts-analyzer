@@ -1,6 +1,6 @@
 import fs from 'fs';
+import { generateCompareReport } from './core/compareReports/generateCompareReport';
 import { configuration } from './core/configuration';
-import { generateCompareReport } from './core/generateCompareReport';
 import { generateHtmlReport } from './core/generateHtmlReport';
 import { generateSimpleFileStats } from './core/generateSimpleFileStats';
 import { createSimpleReport } from './core/simpleReport';

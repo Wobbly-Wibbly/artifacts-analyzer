@@ -1,11 +1,12 @@
 import { generateCompareFilesStats } from './generateCompareFilesStats';
+import { generateCompareFileTypeStats } from './generateCompareFileTypeStats';
 import { generateCompareFoldersStats } from './generateCompareFoldersStats';
 import {
   SimpleFileStats,
   SimpleFilesStats,
   CompareReport,
   SimpleReport,
-} from './types';
+} from '../types';
 
 function getFileListFromBothReports(
   left: { file: string; size: number }[],
@@ -47,10 +48,12 @@ export function generateCompareReport(
     .sort((l, r) => r.order - l.order);
 
   const folderStats = generateCompareFoldersStats(fileStats);
+  const fileTypeStats = generateCompareFileTypeStats(fileStats);
 
   return {
     fileStats,
     folderStats,
+    fileTypeStats,
     leftReportTimestamp,
   };
 }

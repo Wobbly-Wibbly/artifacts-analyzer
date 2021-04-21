@@ -35,12 +35,14 @@ function cli(cliArguments: string[]) {
     );
   }
 
+  console.log(`Running with ${command} command.`);
+
   switch (command) {
     case 'record': {
-      recordReport(fullFolderPath);
+      return recordReport(fullFolderPath);
     }
     case 'report': {
-      generateReport(fullFolderPath);
+      return generateReport(fullFolderPath);
     }
   }
 }

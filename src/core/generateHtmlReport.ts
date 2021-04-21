@@ -1,7 +1,17 @@
 import fs from 'fs';
-import { CompareFilesStats, CompareFolderStats, CompareReport } from './types';
+import {
+  CompareFilesStats,
+  CompareFileTypeStats,
+  CompareFolderStats,
+  CompareReport,
+} from './types';
 
-const base = (folderStats: string, rows: string, timeOfReport: string) => `
+const base = (
+  folderStats: string,
+  rows: string,
+  fileTypeHtmlReport: string,
+  timeOfReport: string
+) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +55,8 @@ td.red {
   ${folderStats}
 </table>
 
+${fileTypeHtmlReport}
+
 <table>
   <tr>
     <th>File</th>
@@ -71,6 +83,34 @@ const generateFolderRow = (stat: CompareFolderStats) => `
 </tr>
 `;
 
+const generateFileTypeRow = (stat: CompareFileTypeStats) => `
+<tr>
+  <td>${stat.folderName}</td>
+  <td>${stat.fileType}</td>
+  <td>${stat.readable.sizeWas}</td>
+  <td>${stat.readable.sizeNew}</td>
+  <td class="${stat.isSizeDecreased ? 'green' : 'red'}">${
+  stat.isSizeDecreased ? '' : '+'
+}${stat.readable.diffSize}</td>
+</tr>
+`;
+const generateFileTypeTable = (stats: CompareFileTypeStats[]) => {
+  const fileTypeStats = stats.map(generateFileTypeRow).join('\n');
+
+  return `
+<table>
+  <tr>
+    <th>Folder</th>
+    <th>File Type</th>
+    <th>Size</th>
+    <th>New Size</th>
+    <th>Diff</th>
+  </tr>
+  ${fileTypeStats}
+</table>
+  `;
+};
+
 const generateRow = (stat: CompareFilesStats) => `
 <tr>
   <td>${stat.file}</td>
@@ -86,5 +126,6 @@ export function generateHtmlReport(stats: CompareReport) {
   const folderStats = stats.folderStats.map(generateFolderRow).join('\n');
   const fileStats = stats.fileStats.map(generateRow).join('\n');
   const timeOfReport = new Date(stats.leftReportTimestamp).toLocaleString();
-  return base(folderStats, fileStats, timeOfReport);
+  const fileTypeHtmlReport = generateFileTypeTable(stats.fileTypeStats);
+  return base(folderStats, fileStats, fileTypeHtmlReport, timeOfReport);
 }
